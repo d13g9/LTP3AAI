@@ -46,7 +46,7 @@ public class cadVendas {
 			@Override
 			public int compare(Venda sell1, Venda sell2) {
 				int name =  sell1.getClient().getName().compareTo(sell2.getClient().getName());
-				int date = sell2.getDateofSell().compareTo(sell1.getDateofSell());
+				int date = new DateDescComparator().compare(sell1,sell2); //sell2.getDateofSell().compareTo(sell1.getDateofSell());
 				
 				if (name != 0)
 					return name;
@@ -100,7 +100,13 @@ public class cadVendas {
 		int quantity_sell = 0;
 		double total_of_period =0;
 		
-		
+		Collections.sort(between,new Comparator<Venda>(){
+
+			@Override
+			public int compare(Venda sell1, Venda sell2) {
+				return sell1.getClient().getName().compareTo(sell2.getClient().getName());
+			}
+		});
 		
 		for(Venda sell:between){
 			Client client = sell.getClient();

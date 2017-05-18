@@ -44,6 +44,9 @@ public class Usuario {
 		
 				
 		
+		/*Client client4 = new Client("55150685488","Alan",
+				  "031993533417","dlbtar@gmail.com",
+				   new GregorianCalendar(),null);
 		
 		Client client = new Client("08328729628","Diego Leibnz",
 								  "031993533417","dlbtar@gmail.com",
@@ -55,18 +58,19 @@ public class Usuario {
 				  "031995533417","LilianaVess@gmail.com",
 				   new GregorianCalendar(),null);
 		
+		cadClientes.insertClient(client4);
 		cadClientes.insertClient(client);
 		cadClientes.insertClient(client2);
 		cadClientes.insertClient(client3);
 		
-		/*try {
-			for(Client client4 : cadClientes.getListOrderByName("Jace")){
-				System.out.println(client4);
+		try {
+			for(Client client5 : cadClientes.getListOrderByName("Jace")){
+				//System.out.println(client5);
 			}
 		} catch (SisVendaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
 		Produto product = new Produto("pc windows", 2500.00, new GregorianCalendar(), 
 				null);
@@ -87,16 +91,18 @@ public class Usuario {
 		al2.add(iv);
 		
 		
-		Venda venda = new Venda(client, new GregorianCalendar(2016,02,15),al);
-		Venda venda1 = new Venda(client2, new GregorianCalendar(2016,02,16),al2); 
+		Venda venda = new Venda(client4, new GregorianCalendar(2016,02,14),al);
+		Venda venda1 = new Venda(client4, new GregorianCalendar(2016,02,16),al2);
+		Venda venda2 = new Venda(client4, new GregorianCalendar(2016,02,15),al);
 		
 		cadVendas.insertSell(venda);
 		cadVendas.insertSell(venda1);
+		cadVendas.insertSell(venda2);
 		
 		try {
 			for(Venda sell:cadVendas.searchByPeriod(new GregorianCalendar(2016,02,01),
 													new GregorianCalendar(2016,02,30))){
-				//System.out.println(sell);
+				System.out.println(sell);
 			}
 			
 		} catch (SisVendaException e) {
@@ -107,12 +113,12 @@ public class Usuario {
 			e.printStackTrace();
 		}
 			
-		cadVendas.printClientSumary(new GregorianCalendar(2016,02,01),
-				new GregorianCalendar(2016,02,30));
+		//cadVendas.printClientSumary(new GregorianCalendar(2016,02,01),
+				//new GregorianCalendar(2016,02,30));
 		//al.add(iv);
 		
 		
-		//System.out.println(venda.toString());
+		//System.out.println(venda.toString());*/
 		
 		
 	}
@@ -179,17 +185,15 @@ public class Usuario {
 	private static void updateClient() {
 		String cpf;
 		Client client = null;
-		boolean flagClientExists = false;
 				
 		cpf = readCPF();
-		flagClientExists = clientExists(cpf,true);
-		
-		if(!flagClientExists){
-			return;
+		try {
+			client = cadClientes.searchByCPf(cpf);
+		} catch (SisVendaException e) {
+			 Console.printPrompt(e.getMessage());
+			 return;
 		}
 				
-		System.out.println(client.toString());
-		client.setCpf(readCPF());
 		client.setName(readName());
 		client.setDateofUpdate(new GregorianCalendar());
 		client.setEmail(readEmail());
@@ -201,6 +205,7 @@ public class Usuario {
 	private static void insertClient() {
 	   String cpf = "",name = "",telefone = "",email = "";
 	   boolean flagClientExists = false;
+	   Client client = null;
 	  
 	   do{
 		   cpf  			= readCPF();
@@ -214,7 +219,7 @@ public class Usuario {
 	   telefone = readString("Telefone(cannot be null):");
 	   email    = readEmail();
 	   
-	   Client client = new Client(cpf,name,telefone,email,
+	  client = new Client(cpf,name,telefone,email,
 			   new GregorianCalendar(),null);
 	   
 	   cadClientes.insertClient(client);
