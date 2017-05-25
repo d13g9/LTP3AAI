@@ -1,8 +1,9 @@
 package Dados;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public class ItemVenda {
+public class ItemVenda implements Serializable{
 		
 	private Produto produto;
 	private double unit_price;
@@ -51,7 +52,7 @@ public class ItemVenda {
 	 * <p> 
 	 * To enforce enscapsulation this method is private 
 	 * **/
-	private void setValorVenda() {
+	public void setValorVenda() {
 		this.valorVenda = getQuantity_sell() * getUnit_price();
 	}
 	

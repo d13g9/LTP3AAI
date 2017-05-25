@@ -12,18 +12,18 @@ import errors.SisVendaException;
 public class cadProdutos {
 	public static HashMap<Integer,Produto> produtosMap  = new HashMap<>();
 	
-	public static void  insertClient(Produto produto){
+	public static void  insertProduct(Produto produto){
 		produtosMap.put(produto.getCodigo(), produto);
 	}
 	
-	public static void deleteClient(Produto produto){
-		produtosMap.remove(produto);
+	public static void deleteProduct(Produto produto){
+		produtosMap.remove(produto.getCodigo());
 	}
-	public static Produto searchByCPf(Integer codigo) throws SisVendaException{
+	public static Produto searchByCode(Integer codigo) throws SisVendaException{
 		Produto produto =  produtosMap.get(codigo);
 		
 		if(produto == null){
-			throw new SisVendaException("Não existe o nome para o produto "
+			throw new SisVendaException("There is no product with this code"
 																	+codigo);
 		}
 		

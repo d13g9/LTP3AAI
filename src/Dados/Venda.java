@@ -1,12 +1,13 @@
 package Dados;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class Venda {
+public class Venda implements Serializable {
 	
-	static int generate_id = 0;
+	public static int generate_id = 0;
 	
 	private int numVenda;
 	private Client client;
@@ -67,7 +68,7 @@ public class Venda {
 							objectString += itemvenda.toString()+"\n";
 							total        += itemvenda.getValorVenda();
 						}
-						objectString += "Total of Sell: "+total; 
+						objectString += "Total of Sell: "+total + "\n"; 
 		return objectString;
 					
 	}

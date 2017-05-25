@@ -1,5 +1,6 @@
 package Dados;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
@@ -9,9 +10,9 @@ import java.util.GregorianCalendar;
  *
  *classe:Produto
  */
-public class Produto {
+public class Produto implements Serializable{
 
-	private static int codigogerador = 0;
+	public static int codigogerador = 0;
 	
 	private int codigo;
 	private double preco_unit;
@@ -83,7 +84,7 @@ public class Produto {
 				"\n" +
 				"Product's date of update: "+ 
 				(this.getDateOfUpdate() == null ? "" : 
-						sdf.format(this.getDateOfUpdate().getTime()));
+						sdf.format(this.getDateOfUpdate().getTime())) + "\n";
 	}
 	
 	

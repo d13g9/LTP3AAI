@@ -106,7 +106,7 @@ public class Client implements Serializable,Comparator {
 		return "Client큦 CPF: "+this.cpf+"\n" + " Client큦 name: "+ this.name +"\n" +
 				"Client's Telephone: "+this.telephone + "\n Client큦 email: "+this.email+
 				"\nClient큦 date of log: "+sdf.format(this.dateofLog.getTime())+"\n" +
-				"Client큦 date of update: "+ (this.dateofUpdate == null ? "" : sdf.format(this.dateofLog.getTime()));
+				"Client큦 date of update: "+ (this.dateofUpdate == null ? "" : sdf.format(this.dateofLog.getTime()) + "\n");
 	}
 
 	@Override
